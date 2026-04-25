@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-11">
+
+            <h2 class="text-center mb-4 fw-bold text-primary">
+                Mục tiêu 1: Xác định nhóm sản phẩm và thị trường trọng điểm theo doanh thu & lợi nhuận
+            </h2>
+
+            <!-- Nút chuyển biểu đồ -->
+            <div class="text-center mb-4">
+                <div class="btn-group btn-group-lg" role="group">
+                    <button type="button" class="btn btn-primary active" onclick="showChart(1)">
+                        Nhóm sản phẩm
+                    </button>
+                    <button type="button" class="btn btn-outline-primary" onclick="showChart(2)">
+                        Nhóm quốc gia
+                    </button>
+                </div>
+            </div>
+
+            <!-- ================== BIỂU ĐỒ 1 + CARD ================== -->
+            <div id="chart1" class="chart-section">
+                <div class="text-center mb-5">
+                    <img src="{{ url_for('static', filename='images/1.png') }}"
+                         class="img-fluid rounded-3 shadow-sm"
+                         style="max-width: 92%; border: 1px solid #eee;"
+                         alt="Scatter plot 3 cụm">
+                </div>
+
+                <!-- 3 CARD CHỈ HIỆN KHI XEM BIỂU ĐỒ 1 -->
+                <h4 class="text-center mb-4 text-success fw-bold">Các nhóm sản phẩm tiêu biểu</h4>
+                <div class="row g-4">
+                    <!-- Card 1 -->
+                    <div class="col-md-4">
+                        <div class="card h-100 border-0 shadow" style="border-left: 8px solid #e74c3c;">
+                            <div class="card-body text-center">
+                                <h5 class="text-danger fw-bold">Sản phẩm đặc thù</h5>
+                                <p class="text-muted small">Doanh thu & lợi nhuận thấp nhất</p>
+                                <ul class="list-unstyled text-start small">
+                                    <li>• Planes</li>
+                                    <li>• Ships</li>
+                                    <li>• Classic Cars</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card h-100 border-0 shadow" style="border-left: 8px solid #f39c12;">
+                            <div class="card-body text-center">
+                                <h5 class="text-warning fw-bold">Sản phẩm ổn định</h5>
+                                <p class="text-muted small">Doanh thu cao, lợi nhuận tốt</p>
+                                <ul class="list-unstyled text-start small">
+                                    <li>• Trains</li>
+                                    <li>• Planes</li>
+                                    <li>• Ships</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card h-100 border-0 shadow" style="border-left: 8px solid #95a5a6;">
+                            <div class="card-body text-center">
+                                <h5 class="text-secondary fw-bold">Sản phẩm xuất sắc</h5>
+                                <p class="text-muted small">Doanh thu & lợi nhuận rất cao</p>
+                                <ul class="list-unstyled text-start small">
+                                    <li>• Classic Cars</li>
+                                    <li>• Planes</li>
+                                    <li>• Motorcycles</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="chart2" class="chart-section text-center" style="display: none;">
+                <img src="{{ url_for('static', filename='images/2.png') }}"
+                     class="img-fluid rounded-3 shadow-sm"
+                     style="max-width: 80%;"
+                     alt="Biểu đồ Elbow chọn K">
+            </div>
+
+            <!-- Nút quay lại -->
+            <div class="text-center mt-5">
+                <a href="/" class="btn btn-outline-dark btn-lg px-5">← Trang chủ</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+function showChart(n) {
+    // Ẩn cả 2 phần
+    document.getElementById('chart1').style.display = 'none';
+    document.getElementById('chart2').style.display = 'none';
+
+    // Hiện phần được chọn
+    document.getElementById('chart' + n).style.display = 'block';
+
+    // Cập nhật nút active
+    document.querySelectorAll('.btn-group .btn').forEach(btn => {
+        btn.classList.remove('btn-primary', 'active');
+        btn.classList.add('btn-outline-primary');
+    });
+    event.target.classList.remove('btn-outline-primary');
+    event.target.classList.add('btn-primary', 'active');
+}
+</script>
+
+{% endblock %}

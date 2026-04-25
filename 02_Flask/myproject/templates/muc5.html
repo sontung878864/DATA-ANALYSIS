@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-10 col-xl-9">
+            <h2 class="text-center mb-5 fw-bold" style="color: #1a1a1a; line-height: 1.4;">
+                Mục tiêu 5: Thực hiện kiểm định thống kê để xác định xem dòng sản phẩm (product line) có ảnh hưởng
+                đáng kể đến doanh số hay không
+            </h2>
+
+            <div class="text-center">
+                <img src="{{ url_for('static', filename='images/12.png') }}"
+                     class="img-fluid"
+                     style="
+                        max-width: 92%;
+                        height: auto;
+                        border: none !important;
+                        box-shadow: none !important;
+                        border-radius: 10px;
+                     "
+                     alt="Phân cụm doanh thu và lợi nhuận">
+            </div>
+
+            <!-- Nút quay lại -->
+            <div class="text-center mt-4">
+                <a href="/" class="btn btn-outline-dark px-5">← Trang chủ</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

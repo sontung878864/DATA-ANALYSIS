@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-10 col-xl-9">
+
+            <h2 class="text-center mb-4 fw-bold" style="color: #1a1a1a;">
+                Mục tiêu 3: Xây dựng mô hình dự đoán lợi nhuận dựa trên đặc trưng sản phẩm và đơn hàng
+            </h2>
+
+            <!-- Nút chuyển biểu đồ -->
+            <div class="text-center mb-4">
+                <div class="btn-group btn-group-lg" role="group">
+                    <button type="button" class="btn btn-primary active" onclick="showChart(1)">
+                        profit và quantityOrdered
+                    </button>
+                    <button type="button" class="btn btn-outline-primary" onclick="showChart(2)">
+                        profit và priceEach
+                    </button>
+                    <button type="button" class="btn btn-outline-primary" onclick="showChart(3)">
+                        profit và buyPrice
+                    </button>
+                </div>
+            </div>
+
+            <!-- Biểu đồ 1 (hiển thị mặc định) -->
+            <div id="chart1" class="chart-container text-center">
+                <img src="{{ url_for('static', filename='images/4.png') }}"
+                     class="img-fluid chart-img"
+                     style="max-width: 92%; border-radius: 10px;"
+                     alt="Biểu đồ phân cụm định giá">
+            </div>
+
+            <!-- Biểu đồ 2 (ẩn ban đầu) -->
+            <div id="chart2" class="chart-container text-center" style="display: none;">
+                <img src="{{ url_for('static', filename='images/3.png') }}"
+                     class="img-fluid chart-img"
+                     style="max-width: 92%; border-radius: 10px;"
+                     alt="Biểu đồ Elbow hoặc Silhouette">
+            </div>
+
+     
+            <div id="chart3" class="chart-container text-center" style="display: none;">
+                <img src="{{ url_for('static', filename='images/5.png') }}"
+                     class="img-fluid chart-img"
+                     style="max-width: 92%; border-radius: 10px;"
+                     alt="Biểu đồ Elbow hoặc Silhouette">
+            </div>
+
+            <div class="text-center mt-4">
+                <a href="/" class="btn btn-outline-dark px-5">← Trang chủ</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- JavaScript chuyển biểu đồ mượt -->
+<script>
+function showChart(n) {
+    // Ẩn hết
+    document.getElementById('chart1').style.display = 'none';
+    document.getElementById('chart2').style.display = 'none';
+    document.getElementById('chart3').style.display = 'none';
+
+    // Hiện cái được chọn
+    document.getElementById('chart' + n).style.display = 'block';
+
+    // Cập nhật nút active
+    document.querySelectorAll('.btn-group .btn').forEach(btn => {
+        btn.classList.remove('btn-primary', 'active');
+        btn.classList.add('btn-outline-primary');
+    });
+    event.target.classList.add('btn-primary', 'active');
+    event.target.classList.remove('btn-outline-primary');
+}
+</script>
+
+{% endblock %}
